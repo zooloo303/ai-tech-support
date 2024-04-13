@@ -1,0 +1,82 @@
+.chat-box {
+    padding-bottom: 100px; /* Adjust this value as needed */
+  }
+  
+.chat-box__message--user {
+    position: relative;
+    background: blue;
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    text-align: right;
+}
+
+.chat-box__message--user::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 15px solid transparent;
+    border-left-color: blue;
+    border-right: 0;
+    border-bottom: 0;
+    margin-top: -7.5px;
+    margin-right: -15px;
+}
+
+.chat-box__message--bot {
+    position: relative;
+    background: green;
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    text-align: left;
+}
+
+.chat-box__message--bot::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 15px solid transparent;
+    border-right-color: green;
+    border-left: 0;
+    border-bottom: 0;
+    margin-top: -7.5px;
+    margin-left: -15px;
+}
+
+#chat-form {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #f2f2f2;
+    padding: 10px;
+    display: flex; /* Add this line */
+    justify-content: space-between; /* Add this line */
+  }
+  
+  #chat-form input {
+    flex-grow: 1; /* Add this line */
+    margin-right: 10px; /* Add this line */
+  }
+
+  #chat-form button {
+    background-color: rgb(0, 0, 255);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px; /* Adjust this line */
+    cursor: pointer;
+  }
+  
+  #chat-form button:hover {
+    background-color: darkblue;
+  }

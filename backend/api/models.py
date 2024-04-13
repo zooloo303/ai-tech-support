@@ -10,3 +10,13 @@ class Note(models.Model):
 
     def __str__(self):
         return self.title
+    
+class Chat(models.Model):
+    prompt = models.TextField()
+    response = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="chats")
+
+    def __str__(self):
+        return self.prompt
+

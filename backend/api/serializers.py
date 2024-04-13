@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Note
+from .models import Note, Chat
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -19,3 +19,13 @@ class NoteSerializer(serializers.ModelSerializer):
         model = Note
         fields = ['id', 'title', 'content', 'created_at', 'author']
         extra_kwargs = {'author': {'read_only': True}}
+
+class ChatSerializer(serializers.ModelSerializer):
+    author = serializers.ReadOnlyField(source='author.username')
+    class Meta:
+        model = Chat
+        fields = ['id', 'prompt', 'response', 'created_at', 'author']
+        extra_kwargs = {
+            'author': {'read_only': True},
+            'response': {'required': False, 'allow_null': True, 'allow_blank': True}
+        }
