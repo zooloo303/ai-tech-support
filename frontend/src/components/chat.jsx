@@ -5,6 +5,7 @@ import "../styles/Chat.css";
 function Chat() {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
+  const [conversationHistory, setConversationHistory] = useState([]);
 
   useEffect(() => {
     getChats();
@@ -31,8 +32,13 @@ function Chat() {
     api
       .post("/api/chats/", { prompt: message })
       .then((res) => {
-        if (res.status === 201) alert("Message sent!");
-        else alert("Failed to send message.");
+        if (res.status === 201) {
+          alert("Message sent!");
+          setConversationHistory([
+            ...conversationHistory,
+            { prompt: message, response: res.data.response },
+          ]);
+        } else alert("Failed to send message.");
         getChats();
       })
       .catch((err) => alert(err));
