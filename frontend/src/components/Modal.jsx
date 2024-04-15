@@ -18,8 +18,8 @@ export default function Modal(props) {
           <h3>Confirm your action!</h3>
         </header>
         <p>
-          Cras sit amet maximus risus. Pellentesque sodales odio sit amet augue
-          finibus pellentesque. Nullam finibus risus non semper euismod.
+          Yup, any old excuse to test a modal. This is a pretty simple one, but
+          it's mine!
         </p>
         <footer>
           <button className="secondary" onClick={handleClose}>

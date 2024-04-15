@@ -1,3 +1,26 @@
-@use "pico" with (
-  $theme-color: "lime"
+@use "@picocss/pico/scss/pico" with (
+
+$theme-color: "lime",
+// Define the root element used to target <header>, <main>, <footer>
+// with $enable-semantic-container and $enable-responsive-spacings
+$semantic-root-element: "#root",
+// Enable <header>, <main>, <footer> inside $semantic-root-element as containers
+$enable-semantic-container: true,
+// Enable .classes
+$enable-classes: false,
+// Enable a centered viewport for <header>, <main>, <footer> inside $semantic-root-element
+// Fluid layout if disabled
+$enable-viewport: true,
+// Enable responsive spacings for <header>, <main>, <footer>, <section>, <article>
+// Fixed spacings by default
+$enable-responsive-spacings: false,
+
 );
+
+h1 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}

@@ -66,3 +66,26 @@ div {
   form input[type="submit"]:hover {
     background-color: #0056b3;
   }
+
+  /* Home.css */
+
+  .header {
+  position: fixed;
+  background-color: #000000de;
+  top: 0;
+  width: 100%;
+  z-index: 100; /* Ensure header is above other content */
+}
+
+  .footer {
+  position: fixed;
+  background-color: #000000de;
+  bottom: 0;
+  width: 100%;
+  z-index: 100; /* Ensure footer is above other content */
+}
+
+  .main-content {
+  padding-top: 50px; /* Adjust based on the height of your header */
+  padding-bottom: 50px; /* Adjust based on the height of your footer */
+}

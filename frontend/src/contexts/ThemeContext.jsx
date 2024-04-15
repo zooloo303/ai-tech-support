@@ -9,8 +9,11 @@ const ThemeProvider = ({ children, ...props }) => {
   const isSSR = typeof window === "undefined";
   const htmlTag = !isSSR && document.querySelector("html");
   const systemPrefersColorScheme = usePrefersColorScheme();
-  const defaultTheme = systemPrefersColorScheme || "light";
-  const [selectedTheme, setSelectedTheme] = useLocalStorageState("picoColorScheme", null);
+  const defaultTheme = systemPrefersColorScheme || "dark";
+  const [selectedTheme, setSelectedTheme] = useLocalStorageState(
+    "picoColorScheme",
+    null
+  );
   const [theme, setTheme] = useState("light");
 
   const switchTheme = () => {
