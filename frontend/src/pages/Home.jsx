@@ -3,7 +3,6 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Chat from "../components/chat";
 //Styles
-
 import "../styles/Home.css";
 
 function Home() {
