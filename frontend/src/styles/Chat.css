@@ -1,13 +1,12 @@
 .chat-box {
-  padding-top: 50px;
+  padding-top: 100px;
   padding-bottom: 50px;
   display: flex;
   flex-direction: column;
-  height: 78vh;
+  height: 80vh;
 }
 .chat-box__message--user {
   position: relative;
-  background: rgba(0, 255, 0, 0.473);
   border-radius: 5px;
   color: white;
   padding: 10px;
@@ -16,7 +15,6 @@
 }
 .chat-box__message--bot {
   position: relative;
-  background: rgba(255, 255, 0, 0.582);
   border-radius: 5px;
   color: white;
   padding: 10px;

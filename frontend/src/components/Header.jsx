@@ -3,7 +3,6 @@ import ColorSchemeSwitcher from "./ColorSchemeSwitcher";
 import { ModalProvider } from "../contexts/ModalContext";
 import ModalButton from "../components/ModalButton";
 import Modal from "../components/Modal";
-import "../styles/Header.css";
 
 const Header = (props) => {
   return (

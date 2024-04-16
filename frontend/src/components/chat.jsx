@@ -1,4 +1,6 @@
 import { React, useState, useEffect } from "react";
+import IconBot from "../icons/IconBot";
+import IconUser from "../icons/IconUser";
 import api from "../api";
 import "../styles/Chat.css";
 
@@ -6,25 +8,36 @@ const Chat = (props) => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     getChats();
-  }, []);
+  }, [searchTerm]);
 
   const getChats = () => {
     api
       .get("/api/chats/")
       .then((res) => res.data)
       .then((data) => {
+        let filteredData = data;
+        if (searchTerm) {
+          filteredData = data.filter((chat) =>
+            chat.prompt.toLowerCase().includes(searchTerm.toLowerCase())
+          );
+        }
         setMessages(
-          data.flatMap((chat) => [
+          filteredData.flatMap((chat) => [
             { role: "user", content: chat.prompt },
             { role: "bot", content: chat.response },
           ])
         );
-        console.log(data);
       })
       .catch((err) => alert(err));
+  };
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+    getChats();
   };
 
   const sendMessage = (e) => {
@@ -49,6 +62,13 @@ const Chat = (props) => {
     <main className="container" {...props}>
       <article>
         <div id="chat-box" className="chat-box">
+          <input
+            type="search"
+            name="search"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={handleSearch}
+          />
           <div className="messages">
             {messages.map((message, index) => (
               <div
@@ -59,7 +79,8 @@ const Chat = (props) => {
                 }}
               >
                 <p>
-                  {message.role === "user" ? "Me" : "Bot"}: {message.content}
+                  {message.role === "user" ? <IconUser /> : <IconBot />}:{" "}
+                  {message.content}
                 </p>
               </div>
             ))}

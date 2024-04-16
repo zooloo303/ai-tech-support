@@ -86,8 +86,12 @@ div {
   width: 100%;
   z-index: 100; /* Ensure footer is above other content */
 }
+  .side-panel{
+    margin-top: 80px;
+    margin-bottom: 60px;
+    width: fit-content;
 
+  }
   .main-content {
-  padding-top: 50px; /* Adjust based on the height of your header */
-  padding-bottom: 50px; /* Adjust based on the height of your footer */
+  display: flex;
 }
