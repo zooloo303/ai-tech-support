@@ -1,8 +1,9 @@
 import React from "react";
 import ColorSchemeSwitcher from "./ColorSchemeSwitcher";
 import { ModalProvider } from "../contexts/ModalContext";
-import ModalButton from "./ModalButton";
-import Modal from "./Modal";
+import ModalButton from "../components/ModalButton";
+import Modal from "../components/Modal";
+import "../styles/Header.css";
 
 const Header = (props) => {
   return (
@@ -18,9 +19,10 @@ const Header = (props) => {
         </ul>
         <ul>
           <li>
-            <a href="#" className="contrast">
-              About
-            </a>
+            <ModalProvider>
+              <ModalButton>About</ModalButton>
+              <Modal />
+            </ModalProvider>
           </li>
         </ul>
       </nav>
