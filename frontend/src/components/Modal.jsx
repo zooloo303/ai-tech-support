@@ -15,17 +15,14 @@ export default function Modal(props) {
       <article>
         <header>
           <button aria-label="Close" rel="prev" onClick={handleClose}></button>
-          <h3>Confirm your action!</h3>
+          <h3>You pressed the button!</h3>
         </header>
         <p>
-          Yup, any old excuse to test a modal. This is a pretty simple one, but
-          it's mine!
+          Nice, it was looking a little lonely, better now...
+          <a href="mailto:zooloo@me.com">zooloo@me.com</a>
         </p>
         <footer>
-          <button className="secondary" onClick={handleClose}>
-            Cancel
-          </button>
-          <button onClick={handleClose}>Confirm</button>
+          <button onClick={handleClose}>Okay</button>
         </footer>
       </article>
     </dialog>
