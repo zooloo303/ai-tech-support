@@ -2,7 +2,6 @@ import { ThemeProvider } from "../contexts/ThemeContext";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Chat from "../components/chat";
-import SidePanel from "../components/SidePanel";
 //Styles
 import "../styles/Home.css";
 
