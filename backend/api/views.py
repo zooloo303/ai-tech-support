@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from rest_framework import generics, viewsets
-from .serializers import UserSerializer, NoteSerializer, ChatSerializer
+from .serializers import ProfileSerializer, UserSerializer, NoteSerializer, ChatSerializer, ClicksSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from .models import Note, Chat
+from .models import Profile, Note, Chat, Clicks
 
 import anthropic
 import os
@@ -11,6 +11,18 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Create your views here.
+class ProfileViewSet(viewsets.ModelViewSet):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    permission_classes = [IsAuthenticated]
+
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+    def perform_update(self, serializer):
+        serializer.save(user=self.request.user)
+
 class NoteListCreate(generics.ListCreateAPIView):
     serializer_class = NoteSerializer
     permission_classes = [IsAuthenticated]
@@ -25,35 +37,39 @@ class NoteListCreate(generics.ListCreateAPIView):
         else:
             print(serializer.errors)
 
-
 class NoteDelete(generics.DestroyAPIView):
     serializer_class = NoteSerializer
     permission_classes = [IsAuthenticated]
 
+
     def get_queryset(self):
         user = self.request.user
         return Note.objects.filter(author=user)
-
 
 class NoteListCreateView(generics.ListCreateAPIView):
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
     permission_classes = [IsAuthenticated]
 
+
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
-
 
 class CreateUserView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
 
+class ClicksViewSet(viewsets.ModelViewSet):
+    queryset = Clicks.objects.all()
+    serializer_class = ClicksSerializer
+    permission_classes = [AllowAny]
 
 class ChatViewSet(viewsets.ModelViewSet):
     queryset = Chat.objects.all()
     serializer_class = ChatSerializer
     permission_classes = [IsAuthenticated]
+
 
     def perform_create(self, serializer):
         # Save the user's message to the database
