@@ -20,7 +20,22 @@ $enable-classes: false,
 h1 {
   text-wrap: balance;
 }
-
+h2 {
+  text-align: center;
+}
 p {
   text-wrap: pretty;
+}
+
+.fit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 80px;
+  margin-bottom: 60px;
+  width: fit-content;
+}
+.text-area {
+  height: 150px;
 }

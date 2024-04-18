@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full height of the viewport */
+  }
+  
+  .note-box {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    overflow-y: auto; /* Enable vertical scrolling if the content overflows */
+  }
+  
+  .user-input {
+    padding-top: 80px;
+    flex-shrink: 0; /* Prevent the form from shrinking */
+  }
+  
+  .note-form {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 5px;
+    margin-bottom: 30px;
+    background-color: transparent;
+  }

@@ -1,8 +1,9 @@
-from django.shortcuts import render
 from django.contrib.auth.models import User
 from rest_framework import generics, viewsets
-from .serializers import ProfileSerializer, UserSerializer, NoteSerializer, ChatSerializer, ClicksSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.generics import RetrieveUpdateAPIView
+from .serializers import ProfileSerializer, UserSerializer, NoteSerializer, ChatSerializer, ClicksSerializer
+
 from .models import Profile, Note, Chat, Clicks
 
 import anthropic
@@ -11,14 +12,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Create your views here.
-class ProfileViewSet(viewsets.ModelViewSet):
-    queryset = Profile.objects.all()
+class ProfileViewSet(RetrieveUpdateAPIView):
     serializer_class = ProfileSerializer
     permission_classes = [IsAuthenticated]
 
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+    def get_object(self):
+        return self.request.user.profile
 
     def perform_update(self, serializer):
         serializer.save(user=self.request.user)

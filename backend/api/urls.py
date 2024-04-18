@@ -6,6 +6,6 @@ urlpatterns = [
     path('notes/delete/<int:pk>/', views.NoteDelete.as_view(), name='delete-note'),
     path('chats/', views.ChatViewSet.as_view({'get': 'list', 'post': 'create'}), name='chat-list'),
     path('chats/<int:pk>/', views.ChatViewSet.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'}), name='chat-detail'),
-    path('profile/', views.ProfileViewSet.as_view({'get': 'retrieve', 'put': 'update', 'post': 'create'}), name='profile'),
+    path('profile/', views.ProfileViewSet.as_view(), name='profile'),
     path('clicks/', views.ClicksViewSet.as_view({'get': 'list', 'post': 'create'}), name='clicks-list'),
 ]
