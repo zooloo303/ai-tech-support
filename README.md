@@ -8,14 +8,17 @@ venv\Scripts\activate
 'npm run dev' to start frontend
 
 # TO-DO list
-Yoda-bot or, Cloda as I'm calling him, doesn't currently do document attachments, should it?
 
-Maybe switch off 'respond in Yoda-speak' ... but not yet
+Build a "Feed" component for the homepage
+Fix the Clickers component
+Style the shit out of everything
 
-add sidebar ... why?
-    to put links in to other pages/apps
+Cloda - 
+    document attachments
+    switch off 'respond in Yoda-speak'
+        replace with details from bio
 
-add a profile component, figure out how to manage media files dev vs prod... this is what copilot said:
+figure out how to manage media files dev vs prod... this is what copilot said:
 
 "In this code, static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) creates a URL pattern for serving media files during development.
 

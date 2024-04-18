@@ -1,5 +1,6 @@
 import React from "react";
 
+// Source Tabler Icons: https://tablericons.com/
 const IconUser = () => {
   return (
     <svg

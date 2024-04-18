@@ -67,32 +67,50 @@ div {
     background-color: #0056b3;
   }
 
-  /* Home.css */
+  /* Styles for the Shell */
 
   .header {
-  position: fixed;
-  background-color: #000000de;
-  top: 0;
-  width: 100%;
-  z-index: 100; 
-  padding-left: 20px;
-  padding-right: 20px;
-}
+     background-color: black;
+     padding: 30px;
+     height: 40px;
+ 
+  }
 
   .footer {
   position: fixed;
-  background-color: #000000de;
   bottom: 0;
-  width: 100%;
+  /* width: 100%; */
   z-index: 100; /* Ensure footer is above other content */
 }
-  .side-panel{
-    margin-top: 80px;
-    margin-bottom: 60px;
-    width: fit-content;
-
+.side-panel {
+  width: 220px;
+  left: -100%;
+  position: absolute;
+  height: 95vp;
+  padding: 0 30px;
+  transition: all 0.5s;
   }
-  .main-content {
+.side-panel.active {
+left: 0;
+}
+.main-content {
   display: flex;
   justify-content: center;
+}
+ul {
+  padding: 0;
+}
+ul li {
+  list-style-type: none;
+}
+ul li a {
+  font-size: 20px;
+  text-decoration: none;
+  display: block;
+  padding: 10px 15px;
+  border-radius: 6px;
+}
+ul li a:hover,
+ul li a:active {
+  background: #172b4d;
 }

@@ -1,10 +1,14 @@
 import "./styles/main.scss";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
-import ProtectedRoute from "./components/ProtectedRoute";
+import ChatPage from "./pages/ChatPage";
+import NotesPage from "./pages/NotesPage";
+import ClicksPage from "./pages/ClicksPage";
+import ProfilePage from "./pages/ProfilePage";
 
 function Logout() {
   localStorage.clear();
@@ -25,6 +29,38 @@ function App() {
           element={
             <ProtectedRoute>
               <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/ChatPage"
+          element={
+            <ProtectedRoute>
+              <ChatPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/NotesPage"
+          element={
+            <ProtectedRoute>
+              <NotesPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/ClicksPage"
+          element={
+            <ProtectedRoute>
+              <ClicksPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/ProfilePage"
+          element={
+            <ProtectedRoute>
+              <ProfilePage />
             </ProtectedRoute>
           }
         />
