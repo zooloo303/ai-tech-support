@@ -20,7 +20,7 @@ const Header = (props) => {
           </ul>
           <ul>
             <li>
-              <strong>zooloo.ai - cloda</strong>
+              <strong>zooloo.me</strong>
             </li>
           </ul>
           <ul>
