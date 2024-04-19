@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import api from "../api";
-import "../styles/MyNotes.css";
+import IconBot from "../icons/IconBot";
+import IconNotes from "../icons/IconNotes";
+import IconClick from "../icons/IconClick";
+import IconProfile from "../icons/IconProfile";
+import "../styles/Home.css";
 
 const Timeline = () => {
   const [activities, setActivities] = useState([]);
@@ -19,19 +23,26 @@ const Timeline = () => {
       })
       .catch((err) => alert(err));
   };
+  // Mapping between activity types and icons
+  const activityIcons = {
+    bot: <IconBot />,
+    notes: <IconNotes />,
+    click: <IconClick />,
+    profile: <IconProfile />,
+  };
 
   return (
     <div className="container">
       <h2>Stuff Happened</h2>
-      <article>
-        {" "}
+      <article className="timeline">
         {activities.map((activity, index) => (
-          <div key={index} className="activity">
+          <div key={index} className="activity-card">
+            {/* <div className="activity-icon">{activityIcons[activity.event]}</div> */}
+            <div className="activity-details">{activity.user}</div>
             <div className="activity-type">{activity.event}</div>
             <div className="activity-time">
               {new Date(activity.time).toLocaleString()}
             </div>
-            <div className="activity-details">{activity.user}</div>
           </div>
         ))}
       </article>

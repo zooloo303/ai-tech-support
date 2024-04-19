@@ -1,11 +1,18 @@
-import Shell from "../components/Shell";
+import { ThemeProvider } from "../contexts/ThemeContext";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import MyNotes from "../components/MyNotes";
 function NotesPage() {
   return (
-    <>
-      <Shell />
-      <MyNotes />
-    </>
+    <ThemeProvider>
+      <div className="app">
+        <Header />
+        <main className="content">
+          <MyNotes />
+        </main>
+        <Footer />
+      </div>
+    </ThemeProvider>
   );
 }
 

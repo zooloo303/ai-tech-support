@@ -12,8 +12,8 @@ import "../styles/Home.css";
 const Header = (props) => {
   const [showSidebar, setShowSidebar] = useState(false);
   return (
-    <>
-      <header className="container-fluid" {...props}>
+    <div className="container-fluid header">
+      <header {...props}>
         <nav>
           <ul>
             <button onClick={() => setShowSidebar(!showSidebar)}>Menu</button>
@@ -39,7 +39,7 @@ const Header = (props) => {
         </nav>
       </header>
       <Sidebar show={showSidebar} />
-    </>
+    </div>
   );
 };
 

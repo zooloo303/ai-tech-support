@@ -66,27 +66,48 @@ div {
   form input[type="submit"]:hover {
     background-color: #0056b3;
   }
-  .timeline {
-    list-style-type: none;
-    padding: 0;
-    position: relative;
-  }
+
+  /* Styles for the Timeline */
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.activity-card {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
 
   /* Styles for the Shell */
-
-  .header {
-     background-color: black;
-     padding: 30px;
-     height: 40px;
- 
-  }
-
-  .footer {
-  position: fixed;
-  bottom: 0;
-  /* width: 100%; */
-  z-index: 100; /* Ensure footer is above other content */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* box-sizing: border-box; */
 }
+  
+.content {
+  flex: 1 0 auto;
+  overflow: auto;
+}
+
+header {
+  padding-left: 2%;
+   padding-right: 2%;
+}
+
+footer {
+  /* position: fixed;
+  bottom: 0px; */
+  width: 100%
+}
+
 .side-panel {
   width: 220px;
   left: -100%;
@@ -98,10 +119,7 @@ div {
 .side-panel.active {
 left: 0;
 }
-.main-content {
-  display: flex;
-  justify-content: center;
-}
+
 ul {
   padding: 0;
 }

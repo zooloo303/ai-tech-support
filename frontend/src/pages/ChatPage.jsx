@@ -1,11 +1,18 @@
-import Shell from "../components/Shell";
+import { ThemeProvider } from "../contexts/ThemeContext";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import Chat from "../components/chat";
 function ChatPage() {
   return (
-    <>
-      <Shell />
-      <Chat />
-    </>
+    <ThemeProvider>
+      <div className="app">
+        <Header />
+        <main className="content">
+          <Chat />
+        </main>
+        <Footer />
+      </div>
+    </ThemeProvider>
   );
 }
 
