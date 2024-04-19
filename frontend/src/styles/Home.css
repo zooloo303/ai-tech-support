@@ -66,6 +66,11 @@ div {
   form input[type="submit"]:hover {
     background-color: #0056b3;
   }
+  .timeline {
+    list-style-type: none;
+    padding: 0;
+    position: relative;
+  }
 
   /* Styles for the Shell */
 

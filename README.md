@@ -8,15 +8,10 @@ venv\Scripts\activate
 'npm run dev' to start frontend
 
 # TO-DO list
-
-Build a "Feed" component for the homepage
-Fix the Clickers component
 Style the shit out of everything
 
-Cloda - 
-    document attachments
-    switch off 'respond in Yoda-speak'
-        replace with details from bio
+Do something better with the Clickers component
+
 
 figure out how to manage media files dev vs prod... this is what copilot said:
 
@@ -24,4 +19,7 @@ figure out how to manage media files dev vs prod... this is what copilot said:
 
 Now, your server should be able to serve media files, and the image should display correctly. Please note that this is not suitable for production use. In a production environment, you should configure your web server to serve media files."
 
-
+Cloda - 
+    document attachments
+    switch off 'respond in Yoda-speak'
+        replace with details from bio

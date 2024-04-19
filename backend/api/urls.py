@@ -8,4 +8,5 @@ urlpatterns = [
     path('chats/<int:pk>/', views.ChatViewSet.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'}), name='chat-detail'),
     path('profile/', views.ProfileViewSet.as_view(), name='profile'),
     path('clicks/', views.ClicksViewSet.as_view({'get': 'list', 'post': 'create'}), name='clicks-list'),
+    path('timeline/', views.TimelineList.as_view(), name='timeline-list'),
 ]

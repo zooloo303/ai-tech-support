@@ -1,9 +1,10 @@
 import Shell from "../components/Shell";
+import Timeline from "../components/Timeline";
 function Home() {
   return (
     <>
       <Shell />
-      <a className="main-content">Home</a>
+      <Timeline />
     </>
   );
 }

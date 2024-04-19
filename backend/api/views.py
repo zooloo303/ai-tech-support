@@ -1,17 +1,24 @@
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from rest_framework import generics, viewsets
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.generics import RetrieveUpdateAPIView
 from .serializers import ProfileSerializer, UserSerializer, NoteSerializer, ChatSerializer, ClicksSerializer
-
 from .models import Profile, Note, Chat, Clicks
-
+from django.http import JsonResponse
+from django.core import serializers
 import anthropic
 import os
 from dotenv import load_dotenv
 load_dotenv()
 
-# Create your views here.
+# Create User
+class CreateUserView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [AllowAny]
+
+# Profiles
 class ProfileViewSet(RetrieveUpdateAPIView):
     serializer_class = ProfileSerializer
     permission_classes = [IsAuthenticated]
@@ -23,6 +30,7 @@ class ProfileViewSet(RetrieveUpdateAPIView):
     def perform_update(self, serializer):
         serializer.save(user=self.request.user)
 
+# Notes
 class NoteListCreate(generics.ListCreateAPIView):
     serializer_class = NoteSerializer
     permission_classes = [IsAuthenticated]
@@ -41,7 +49,6 @@ class NoteDelete(generics.DestroyAPIView):
     serializer_class = NoteSerializer
     permission_classes = [IsAuthenticated]
 
-
     def get_queryset(self):
         user = self.request.user
         return Note.objects.filter(author=user)
@@ -55,16 +62,16 @@ class NoteListCreateView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
-class CreateUserView(generics.CreateAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    permission_classes = [AllowAny]
-
+# Clicks
 class ClicksViewSet(viewsets.ModelViewSet):
     queryset = Clicks.objects.all()
     serializer_class = ClicksSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
+
+# Chats
 class ChatViewSet(viewsets.ModelViewSet):
     queryset = Chat.objects.all()
     serializer_class = ChatSerializer
@@ -120,3 +127,55 @@ class ChatViewSet(viewsets.ModelViewSet):
             user_message.save()
         else:
             print("No response received from the API.")
+
+User = get_user_model()
+# Timeline
+class TimelineList(generics.ListAPIView):
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        # Fetch data from each model
+        profiles = Profile.objects.all()
+        notes = Note.objects.all()
+        chats = Chat.objects.all()
+        clicks = Clicks.objects.all()
+
+        # Combine all data into a single list
+        data = []
+
+        for profile in profiles:
+            data.append({
+                'user': profile.user.username,
+                'time': profile.created_at,
+                'event': 'Updated their bio'
+            })
+
+        for note in notes:
+            data.append({
+                'user': note.author.username,
+                'time': note.created_at,
+                'event': 'Created a note'
+            })
+
+        for chat in chats:
+            data.append({
+                'user': chat.author.username,
+                'time': chat.created_at,
+                'event': 'Had a Chat with the bot'
+            })
+
+        for click in clicks:
+            data.append({
+                'user': click.author.username,
+                'time': click.created_at,
+                'event': 'Clicked the clicker'
+            })
+
+        # Sort the data by the 'time' field
+        data.sort(key=lambda x: x['time'], reverse=True)
+
+        return data
+
+    def list(self, request):
+        queryset = self.get_queryset()
+        return JsonResponse(queryset, safe=False)

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import api from "../api";
 
 const Clicks = () => {
   const [count, setCount] = useState(0);
@@ -7,18 +8,12 @@ const Clicks = () => {
     setCount(count + 1);
 
     // Make an API request to save the new count
-    fetch("/api/clicks", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+    api
+      .post("/api/clicks/", {
         count: count + 1,
         // Add other attributes here, like author and created_at
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data))
+      })
+      .then((response) => console.log(response.data))
       .catch((error) => {
         console.error("Error:", error);
       });
