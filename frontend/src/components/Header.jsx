@@ -16,7 +16,7 @@ const Header = (props) => {
       <header {...props}>
         <nav>
           <ul>
-            <button onClick={() => setShowSidebar(!showSidebar)}>Menu</button>
+            <IconMenuBurger onClick={() => setShowSidebar(!showSidebar)} />
           </ul>
           <ul>
             <li>

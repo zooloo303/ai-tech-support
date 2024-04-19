@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import api from "../api";
+import "../styles/Home.css";
 
 const Clicks = () => {
   const [count, setCount] = useState(0);
@@ -20,10 +21,12 @@ const Clicks = () => {
   };
 
   return (
-    <div className="fit">
-      <h1>Clicksers</h1>
-      <button onClick={handleClick}>Click Me</button>
-      <p>Number of Clicks: {count}</p>
+    <div className="container">
+      <article className="card-style">
+        <h1>Clicksers</h1>
+        <button onClick={handleClick}>Click Me</button>
+        <p>Number of Clicks: {count}</p>
+      </article>
     </div>
   );
 };

@@ -1,9 +1,9 @@
 import React from "react";
 
 // Source Tabler Icons: https://tablericons.com/
-const IconMenuBurger = () => {
+const IconMenuBurger = ({ onClick }) => {
   return (
-    <button>
+    <button className="icon-button" onClick={onClick}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="icon icon-tabler icon-tabler-burger"

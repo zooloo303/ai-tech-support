@@ -25,10 +25,10 @@ const Timeline = () => {
   };
   // Mapping between activity types and icons
   const activityIcons = {
-    bot: <IconBot />,
-    notes: <IconNotes />,
-    click: <IconClick />,
-    profile: <IconProfile />,
+    "Had a Chat with the bot": <IconBot />,
+    "Created a note": <IconNotes />,
+    "Clicked the clicker": <IconClick />,
+    "Updated their bio": <IconProfile />,
   };
 
   return (
@@ -37,11 +37,12 @@ const Timeline = () => {
       <article className="timeline">
         {activities.map((activity, index) => (
           <div key={index} className="activity-card">
-            {/* <div className="activity-icon">{activityIcons[activity.event]}</div> */}
-            <div className="activity-details">{activity.user}</div>
-            <div className="activity-type">{activity.event}</div>
-            <div className="activity-time">
-              {new Date(activity.time).toLocaleString()}
+            <div className="icon">{activityIcons[activity.event]}</div>
+            <div>
+              {activity.user} {activity.event}
+            </div>
+            <div className="time">
+              <small> @ {new Date(activity.time).toLocaleString()} </small>
             </div>
           </div>
         ))}

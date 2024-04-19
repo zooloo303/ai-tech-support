@@ -2,7 +2,8 @@ import { ThemeProvider } from "../contexts/ThemeContext";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Chat from "../components/chat";
-function ChatPage() {
+
+const ChatPage = () => {
   return (
     <ThemeProvider>
       <div className="app">
@@ -14,6 +15,6 @@ function ChatPage() {
       </div>
     </ThemeProvider>
   );
-}
+};
 
 export default ChatPage;

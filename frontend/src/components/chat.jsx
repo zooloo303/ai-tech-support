@@ -9,10 +9,16 @@ const Chat = (props) => {
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
+    api
+      .get("/api/current_user/")
+      .then((res) => setCurrentUser(res.data.username))
+      .catch((err) => alert(err));
+
     getChats();
-  }, [searchTerm]);
+  }, [searchTerm, currentUser]);
 
   const getChats = () => {
     api
@@ -20,16 +26,22 @@ const Chat = (props) => {
       .then((res) => res.data)
       .then((data) => {
         let filteredData = data;
+        if (currentUser) {
+          // Filter the chats to only include those from the current user
+          filteredData = data.filter((chat) => chat.author === currentUser);
+        }
         if (searchTerm) {
           filteredData = data.filter((chat) =>
             chat.prompt.toLowerCase().includes(searchTerm.toLowerCase())
           );
         }
         setMessages(
-          filteredData.flatMap((chat) => [
-            { role: "user", content: chat.prompt },
-            { role: "bot", content: chat.response },
-          ])
+          filteredData
+            .flatMap((chat) => [
+              { role: "bot", content: chat.response },
+              { role: "user", content: chat.prompt },
+            ])
+            .reverse()
         );
       })
       .catch((err) => alert(err));
@@ -60,46 +72,45 @@ const Chat = (props) => {
 
   return (
     <main className="container" {...props}>
-      <article>
-        <div id="chat-box" className="chat-box">
-          <input
-            type="search"
-            name="search"
-            placeholder="Search"
-            value={searchTerm}
-            onChange={handleSearch}
-          />
-          <div className="messages">
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`chat-box__message chat-box__message--${message.role} ${message.role}`}
-                style={{
-                  textAlign: message.role === "user" ? "right" : "left",
-                }}
-              >
-                <p>
-                  {message.role === "user" ? <IconUser /> : <IconBot />}:{" "}
-                  {message.content}
-                </p>
-              </div>
-            ))}
-          </div>
-          <div className="user-input">
-            <form id="chat-form" onSubmit={sendMessage}>
-              <input
-                type="text"
-                name="message"
-                placeholder="Type your message..."
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-              />
-              <button type="submit">Send</button>
-              {isLoading && <progress />}
-            </form>
-          </div>
+      <div className="chat-box">
+        <form className="form-chat contrast" onSubmit={sendMessage}>
+          <fieldset role="group">
+            <input
+              type="text"
+              name="message"
+              placeholder="Ask your question ..."
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+            <input type="submit" value="hmmm" />
+          </fieldset>
+          {isLoading && <progress />}
+        </form>
+        <input
+          className="chat-search"
+          type="search"
+          name="search"
+          placeholder="Search the chat history"
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+        <div className="messages">
+          {messages.map((message, index) => (
+            <div
+              key={index}
+              className={`chat-box__message chat-box__message--${message.role} ${message.role}`}
+              style={{
+                textAlign: message.role === "user" ? "right" : "left",
+              }}
+            >
+              <p>
+                {message.role === "user" ? <IconUser /> : <IconBot />}:{" "}
+                {message.content}
+              </p>
+            </div>
+          ))}
         </div>
-      </article>
+      </div>
     </main>
   );
 };

@@ -8,7 +8,7 @@ venv\Scripts\activate
 'npm run dev' to start frontend
 
 # TO-DO list
-Style the shit out of everything
+little more styling
 
 Do something better with the Clickers component
 

@@ -45,24 +45,26 @@ const Profile = () => {
   };
 
   return (
-    <div className="fit">
-      <h1>This is your profile: {profile.user}</h1>
-      <form onSubmit={handleSubmit}>
-        {profile.avatar && <img src={profile.avatar} alt="Avatar" />}
-        <label>
-          Bio:
-          <textarea
-            className="text-area"
-            value={bio}
-            onChange={handleBioChange}
-          />
-        </label>
-        <label>
-          Avatar:
-          <input type="file" onChange={handleAvatarChange} />
-        </label>
-        <button type="submit">Update Profile</button>
-      </form>
+    <div className="container">
+      <article className="card-style">
+        <h1>This is your profile: {profile.user}</h1>
+        <form onSubmit={handleSubmit}>
+          {profile.avatar && <img src={profile.avatar} alt="Avatar" />}
+          <label>
+            Bio:
+            <textarea
+              className="text-area"
+              value={bio}
+              onChange={handleBioChange}
+            />
+          </label>
+          <label>
+            Avatar:
+            <input type="file" onChange={handleAvatarChange} />
+          </label>
+          <button type="submit">Update Profile</button>
+        </form>
+      </article>
     </div>
   );
 };

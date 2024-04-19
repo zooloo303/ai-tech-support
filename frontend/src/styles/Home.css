@@ -2,7 +2,16 @@
 div {
     font-family: Arial, sans-serif;
   }
-  
+  .container {
+    width: 70%;  /* Set the width to 70% of the screen */
+    margin: 0 auto;  /* Center the element horizontally */
+  }
+  .card-style {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
   /* Styles for the notes section */
   .notes-section {
     margin-bottom: 2rem;
@@ -24,14 +33,17 @@ div {
   
   /* Styles for the form section */
   form {
-    background-color: #fff;
-    padding: 20px;
+    background-color: #ffffff2a;
+    padding: 10px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    margin: auto;
+    /* max-width: 500px; */
+    /* margin: auto; */
   }
-  
+  .chat-search{
+    margin-top: 10px;
+  }
+
   form h2 {
     color: #333;
     font-size: 24px;
@@ -54,8 +66,8 @@ div {
   }
   
   form input[type="submit"] {
-    background-color: #007bff;
-    color: white;
+    /* background-color: #007bff; */
+    /* color: white; */
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
@@ -76,12 +88,20 @@ div {
 }
 
 .activity-card {
-  width: 100%;
-  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: row;
+  width: 60%;
   border-radius: 5px;
   padding: 20px;
   margin: 10px 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.514);
+}
+.icon {
+  padding-right: 10px;
+}
+.time {
+  padding-top: 5%;
+  padding-left: 28%;
 }
 
   /* Styles for the Shell */
@@ -113,7 +133,7 @@ footer {
   left: -100%;
   position: absolute;
   height: 95vp;
-  padding: 0 30px;
+  padding: 0 10px;
   transition: all 0.5s;
   }
 .side-panel.active {

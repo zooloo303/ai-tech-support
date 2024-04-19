@@ -6,7 +6,6 @@ from rest_framework.generics import RetrieveUpdateAPIView
 from .serializers import ProfileSerializer, UserSerializer, NoteSerializer, ChatSerializer, ClicksSerializer
 from .models import Profile, Note, Chat, Clicks
 from django.http import JsonResponse
-from django.core import serializers
 import anthropic
 import os
 from dotenv import load_dotenv
@@ -17,6 +16,16 @@ class CreateUserView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+class CurrentUserView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)
 
 # Profiles
 class ProfileViewSet(RetrieveUpdateAPIView):
