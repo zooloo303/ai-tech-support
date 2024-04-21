@@ -1,0 +1,22 @@
+# Ignore files and directories commonly excluded in Docker builds
+# env's
+.env
+.venv
+venv
+
+# Files
+.git
+.svn
+.env
+.dockerignore
+.dockerignore.example
+.dockerignore.sample
+.dockerignore.template
+.dockerignore.default
+.dockerignore.dist
+
+# Directories
+.git
+.svn
+node_modules
+bower_components
